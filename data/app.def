@@ -1,14 +1,20 @@
 Bootstrap: docker
 From: node:20-alpine
 
+%post
+    mkdir -p /app/
+
 %files
-    ./src/* /src/
+    ./prisma/* /app/
+    ./.gitignore /app/
+    ./BaseDbClient.ts /app/
+    ./DbClientFactory.ts /app/
+    ./package-lock.json /app/
+    ./package.json /app/
+    ./tsconfig.json /app/
 
 %post
-    whoami
-    cd /src/
-    ls -l ./
-    pwd
+    cd /app/
 
     apk add --no-cache sqlite
     npm install -g npm@latest
@@ -18,7 +24,6 @@ From: node:20-alpine
 
 %runscript
     whoami
-    cd /src/
     ls -l ./
     pwd
 

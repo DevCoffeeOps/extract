@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 import { Assert } from 'ts-runtime-checks';
 
 export class BaseDbClient<T, CreateInput, UpdateInput> {
