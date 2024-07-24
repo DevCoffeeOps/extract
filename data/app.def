@@ -5,13 +5,8 @@ From: node:20-alpine
     mkdir -p /app/
 
 %files
-    ./prisma/* /app/
-    ./.gitignore /app/
-    ./BaseDbClient.ts /app/
-    ./DbClientFactory.ts /app/
-    ./package-lock.json /app/
-    ./package.json /app/
-    ./tsconfig.json /app/
+    data/* /app/
+    data/.gitignore /app/
 
 %post
     cd /app/
@@ -23,9 +18,9 @@ From: node:20-alpine
     npm run db:migrate
 
 %runscript
-    whoami
-    ls -l ./
+    cd /app/
     pwd
+    ls -l ./
 
 %labels
     Author 1nf053c
