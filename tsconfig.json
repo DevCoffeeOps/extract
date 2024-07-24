@@ -22,12 +22,7 @@
             {
                 "transform": "ts-runtime-checks"
             }
-        ],
-        "paths": {
-            "@/*": [
-                "./src/*"
-            ]
-        }
+        ]
     },
     "include": [
         "**/*.ts",

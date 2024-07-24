@@ -11,7 +11,7 @@
     "dependencies": {
         "@prisma/client": "^5.17.0",
         "prisma": "^5.16.1",
-        "ts-runtime-checks": "^0.6.0",
+        "ts-runtime-checks": "^0.6.1",
         "uuid": "^10.0.0"
     },
     "devDependencies": {
