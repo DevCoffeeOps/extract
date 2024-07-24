@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: node:20-alpine
+
+%files
+    ./src/* /src/
+
+%post
+    whoami
+    cd /src/
+    ls -l ./
+    pwd
+
+    apk add --no-cache sqlite
+    npm install -g npm@latest
+    npm i
+    npm run run-once-after-npm-install
+    npm run db:migrate
+
+%runscript
+    whoami
+    cd /src/
+    ls -l ./
+    pwd
+
+%labels
+    Author 1nf053c
+    Version 1.0
+    Description "Container for Node.js and sqlite"

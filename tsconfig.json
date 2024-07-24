@@ -32,7 +32,7 @@
     "include": [
         "**/*.ts",
         "jest.setup.js",
-        "prisma/seeds/seed.mts"
+        "src/prisma/seeds/seed.mts"
     ],
     "exclude": [
         "node_modules"
