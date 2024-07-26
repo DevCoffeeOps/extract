@@ -2,10 +2,16 @@
 
 ```sh
 # build
-apptainer build -F data/app.sif data/app.def
+./build/data/apptainer/build.sh
+
+# Result:
+# - a built image with date and incremented number exists in builds/
 ```
 
 ```sh
 # run
-apptainer run --containall data/app.sif data/app.def
+./run/data/apptainer/run.sh
+
+# Result:
+# - the latest built image in builds/ is ran
 ```
