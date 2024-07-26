@@ -10,7 +10,7 @@ From: node:20-alpine
 
 %post
     cd /app/
-
+    apk update
     apk add --no-cache sqlite
     npm install -g npm@latest
     npm i
