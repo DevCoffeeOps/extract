@@ -33,5 +33,4 @@ filename=$(generate_filename)
 # Print the unique filename
 echo "Using filename: $filename"
 
-apptainer build -F $filename data/app.def
-
+apptainer build -F --fakeroot $filename data/app.def

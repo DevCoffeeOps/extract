@@ -20,4 +20,5 @@ fi
 
 # Run the apptainer command with the latest file
 echo "Running apptainer with the latest build file: $latest_file"
-apptainer run --containall "$latest_file"
+
+apptainer run --fakeroot --containall --bind ./data:/app/ "$latest_file"

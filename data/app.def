@@ -9,6 +9,20 @@ From: node:20-alpine
     data/.gitignore /app/
 
 %post
+    apk update
+    apk add --no-cache bash sudo shadow
+
+    adduser -D -u 1001 -h /home/devcoffeeops -s /bin/ash devcoffeeops
+
+    echo "devcoffeeops:buildreleaserun" | chpasswd
+
+    mkdir -p /etc/sudoers.d
+    echo "devcoffeeops ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/devcoffeeops
+    chmod 440 /etc/sudoers.d/devcoffeeops
+
+    mkdir -p /home/devcoffeeops
+    chown -R devcoffeeops:devcoffeeops /home/devcoffeeops
+
     cd /app/
     apk update
     apk add --no-cache sqlite
@@ -16,12 +30,17 @@ From: node:20-alpine
     npm i
     npm run run-once-after-npm-install
     npm run db:migrate
+    npx tsc /app/prisma/seeds/seed.ts
+
+%environment
+    export USER=devcoffeeops
+    export HOME=/home/devcoffeeops
+    export PATH="/home/devcoffeeops/bin:$PATH"
 
 %runscript
-    cd /app/
-    pwd
-    ls -l ./
-
+    su - devcoffeeops
+    /bin/bash --rcfile <(echo 'cd /app/prisma/seeds')
+    
 %labels
     Author 1nf053c
     Version 1.0
