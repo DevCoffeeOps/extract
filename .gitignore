@@ -1,7 +1,7 @@
 *.db
 *.db-journal
 *.sif
-data
+data/raw
 
 # Logs
 logs
