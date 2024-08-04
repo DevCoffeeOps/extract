@@ -4,7 +4,8 @@
             "node"
         ],
         "lib": [
-            "esnext"
+            "esnext",
+            "dom"
         ],
         "allowJs": true,
         "skipLibCheck": true,
