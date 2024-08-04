@@ -1,8 +1,7 @@
 require('dotenv').config({ path: '.env.local' });
 
 import { getPlaces } from './places/getPlaces';
-import * as path from 'path';
-import { promises as fs } from 'fs';
+import { jsonAsString, writeToRaw } from '../fileUtils';
 
 async function main() {
     const USAGE_STRING = 'Usage: node program.js <keyword> <cityState>';
@@ -23,16 +22,6 @@ async function main() {
     const runningShoeStores = await getPlaces(keyword, cityState);
     const str = await jsonAsString(runningShoeStores);
     await writeToRaw(str);
-}
-
-export async function jsonAsString(data: any) {
-    return JSON.stringify(data, null, 2);
-}
-
-export async function writeToRaw(str: string) {
-    const filepath = path.join(__dirname, '../data/raw', 'googlemaps_places_running_shoe_stores.json')
-    await fs.writeFile(filepath, str);
-    console.log('written to.. vscode://file' + filepath);
 }
 
 main().then().catch(err => console.log(err))

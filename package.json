@@ -6,7 +6,8 @@
         "run-once-after-npm-install": "npx ts-patch install",
         "db:migrate": "rm -rf prisma/migrations && npx prisma migrate reset -f && npx prisma generate && npx prisma migrate dev --name init",
         "db:seed": "node --import tsx prisma/seeds/seed.ts",
-        "extract:places": "rm -f src/extractPlaces.js && tsc src/extractPlaces.ts && node src/extractPlaces.js"
+        "extract:places": "rm -f src/extract/extractPlaces.js && tsc src/extract/extractPlaces.ts && node src/extract/extractPlaces.js",
+        "process": "rm -f src/process/index.js && tsc src/process/index.ts && node src/process/index.js"
     },
     "dependencies": {
         "@prisma/client": "^5.17.0",
