@@ -1,7 +1,7 @@
-require('dotenv').config({ path: '.env.local' });
+import '../set_env.js';
 
 import { getPlaces } from './places/getPlaces';
-import { jsonAsString, writeToRaw } from '../fileUtils';
+import { jsonAsString, writeToRaw } from '../utils';
 
 async function main() {
     const USAGE_STRING = 'Usage: node program.js <keyword> <cityState>';

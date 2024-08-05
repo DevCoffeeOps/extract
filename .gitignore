@@ -2,6 +2,7 @@
 *.db-journal
 *.sif
 data/
+set_env.js
 
 # Logs
 logs

@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env.local' });
+import '../../set_env.js';
 
 import axios from "axios";
 

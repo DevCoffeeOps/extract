@@ -1,5 +1,8 @@
-import * as path from 'path';
-import { promises as fs } from 'fs';
+import fs from 'fs/promises';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export async function jsonAsString(data: any) {
     return JSON.stringify(data, null, 2);

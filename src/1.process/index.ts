@@ -1,6 +1,7 @@
-import { jsonAsString, writeToProcessed } from "../fileUtils";
+import { jsonAsString, writeToProcessed } from "../utils";
 import { createRunningShoeStore } from "./createRunningShoeStore";
-const rawDataList = require('../../data/raw/googlemaps_places_running_shoe_stores.json');
+
+import rawDataList from '../../data/raw/googlemaps_places_running_shoe_stores.json' assert { type: 'json' };
 
 async function main() {
     const processedData = rawDataList.places.map((rawData: any) => createRunningShoeStore(rawData));
