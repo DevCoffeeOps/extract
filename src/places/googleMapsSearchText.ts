@@ -1,4 +1,4 @@
-import '../../set_env.js';
+import '../set_env.js';
 
 import axios from "axios";
 

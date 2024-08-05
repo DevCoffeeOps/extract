@@ -1,7 +1,6 @@
-import '../set_env.js';
-
-import { getPlaces } from './places/getPlaces';
-import { jsonAsString, writeToRaw } from '../utils';
+import './set_env.js'
+import { getPlaces } from './places/getPlaces.js';
+import { jsonAsString, writeToRaw } from './utils/index.js';
 
 async function main() {
     const USAGE_STRING = 'Usage: node program.js <keyword> <cityState>';

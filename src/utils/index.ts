@@ -13,4 +13,3 @@ export async function writeToRaw(str: string) {
     await fs.writeFile(filepath, str);
     console.log('written to.. vscode://file' + filepath);
 }
-

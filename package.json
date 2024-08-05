@@ -5,16 +5,10 @@
     "type": "module",
     "scripts": {
         "postinstall": "npx ts-patch install",
-        "db:migrate": "rm -rf prisma/migrations && npx prisma migrate reset -f && npx prisma generate && npx prisma migrate dev --name init",
-        "db:seed": "node --import tsx prisma/seeds/seed.ts",
-        "db:studio": "npx prisma studio",
-        "db:backup": "sqlite3 prisma/running_shoe_stores.db .dump > prisma/backup.sql",
-        "db:restore": "rm -f prisma/running_shoe_stores.db && sqlite3 prisma/running_shoe_stores.db < prisma/backup.sql",    
-        "prebuild": "rm -rf dist/ && rm -f tsconfig.tsbuildinfo",
+        "prebuild": "rm -rf dist/",
         "build": "tsc && tsc-alias && cp set_env.js dist/",
-        "extract": "npm run build && node dist/0.extract/index.js",
-        "process": "npm run build && node dist/1.process/index.js",
-        "load": "npm run build && node dist/2.load/index.js"
+        "start": "npm run build && node dist/index.js",
+        "go": "node --import tsx src/index.ts"
     },
     "dependencies": {
         "@prisma/client": "^5.17.0",
