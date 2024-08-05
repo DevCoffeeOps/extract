@@ -3,6 +3,7 @@
 *.sif
 data/
 set_env.js
+prisma/backup.sql
 
 # Logs
 logs
