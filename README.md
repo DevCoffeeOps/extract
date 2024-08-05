@@ -33,7 +33,7 @@ use `data/processed/*` to ensure view models are constructed properly
 // deletes local build artifacts, dist/ is .gitignored
 "prebuild": "rm -rf dist/ && rm -f tsconfig.tsbuildinfo",
 
-// compiles typescript to js in dist/, copies set_env.js to dist/, set_env.js is .gitignored
+// tsc compiles typescript to js in dist/, tsc-alias appends ".js" to import statements in dist/ to help with esmodule resolution, and cp copies set_env.js to dist/, set_env.js is .gitignored
 "build": "tsc && tsc-alias && cp set_env.js dist/",
 
 // extract raw data from API!
