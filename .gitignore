@@ -4,6 +4,7 @@
 data/
 set_env.js
 prisma/backup.sql
+output
 
 # Logs
 logs
