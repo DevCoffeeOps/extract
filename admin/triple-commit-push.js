@@ -1,3 +1,6 @@
+// Only run this if you make change to admin/save-build.js
+// This script pushes 3 commits to history to ensure latest admin/save-build.js change spans the three latest commits.
+
 import { execSync } from 'child_process';
 
 function runCommand(command) {
