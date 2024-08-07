@@ -37,7 +37,7 @@ function checkoutBranch(branch) {
 
 function buildAndSave(commitHash) {
     const buildPrefix = getBuildPrefix(buildType);
-    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix}${timestamp}${commitHash ? '-' + commitHash : ''}`);
+    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix}${timestamp}-${commitHash}`);
     const distDir = join(__dirname, '..', 'dist');
 
     if (fs.existsSync(buildDir)) {
@@ -89,7 +89,7 @@ function isDetached() {
 
         let commitHash;
         if (buildType === 'current') {
-            commitHash = '';
+            commitHash = 'current';
         } else if (buildType === 'last') {
             commitHash = getCommitHash('HEAD');
         } else if (buildType === 'two-commits-ago') {
