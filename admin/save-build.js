@@ -43,7 +43,7 @@ function buildAndSave(commitHash) {
     if (fs.existsSync(buildDir)) {
         rimraf.sync(buildDir);
     }
-    
+
     runCommand('npm run build');
 
     fs.mkdirSync(buildDir, { recursive: true });
@@ -89,7 +89,7 @@ function isDetached() {
 
         let commitHash;
         if (buildType === 'current') {
-            commitHash = 'current';
+            commitHash = '';
         } else if (buildType === 'last') {
             commitHash = getCommitHash('HEAD');
         } else if (buildType === 'two-commits-ago') {
