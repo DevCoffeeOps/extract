@@ -5,6 +5,7 @@ data/
 set_config.js
 prisma/backup.sql
 output
+releases
 
 # Logs
 logs

@@ -15,6 +15,7 @@
         "save-last": "node admin/save-build.js last",
         "save-two-commits-ago": "node admin/save-build.js two-commits-ago",
         "build-all": "npm run prepare-build-dir && npm run build-current && npm run build-last && npm run build-two-commits-ago",
+        "release": "node admin/release.js",
         "start": "npm run build && node dist/index.js",
         "go": "node --import tsx src/index.ts"
     },
