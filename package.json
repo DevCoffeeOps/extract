@@ -5,8 +5,16 @@
     "type": "module",
     "scripts": {
         "postinstall": "npx ts-patch install",
-        "prebuild": "rm -rf dist/",
-        "build": "tsc && tsc-alias && cp set_env.js dist/",
+        "build": "tsc",
+        "clean": "rimraf dist",
+        "prepare-build-dir": "rimraf builds && mkdir -p builds",
+        "build-current": "npm run clean && npm run build && npm run save-current",
+        "build-last": "npm run clean && git checkout HEAD && npm run build && npm run save-last && git checkout -",
+        "build-two-commits-ago": "npm run clean && git checkout HEAD~1 && npm run build && npm run save-two-commits-ago && git checkout -",
+        "save-current": "node scripts/save-build.js current",
+        "save-last": "node scripts/save-build.js last",
+        "save-two-commits-ago": "node scripts/save-build.js two-commits-ago",
+        "build-all": "npm run prepare-build-dir && npm run build-current && npm run build-last && npm run build-two-commits-ago",
         "start": "npm run build && node dist/index.js",
         "go": "node --import tsx src/index.ts"
     },
