@@ -1,5 +1,3 @@
-import '../setConfig'
-
 import { getPlaces } from './places/getPlaces.js';
 import { writeToOutput } from './utils/index.js';
 

@@ -40,12 +40,27 @@ const pattern = '01-';  // Adjust pattern as needed
 const buildDir = findLatestBuildDir(pattern);
 
 // Ensure release directory exists
-if (!fs.existsSync(releaseDir)) {
-    fs.mkdirSync(releaseDir, { recursive: true });
+if (fs.existsSync(releaseDir)) {
+    fs.rmdirSync(releaseDir, { recursive: true });
+}
+fs.mkdirSync(releaseDir, { recursive: true });
+
+// Copy dist directory from buildDir to releaseDir
+function copyDir(srcDir, destDir) {
+    fs.readdirSync(srcDir).forEach(file => {
+        const srcPath = path.join(srcDir, file);
+        const destPath = path.join(destDir, file);
+        if (fs.statSync(srcPath).isDirectory()) {
+            fs.mkdirSync(destPath, { recursive: true });
+            copyDir(srcPath, destPath);
+        } else {
+            fs.copyFileSync(srcPath, destPath);
+        }
+    });
 }
 
-// Copy build to release directory
-execSync(`cp -r ${buildDir}/* ${releaseDir}`, { stdio: 'inherit' });
+// Copy the entire dist directory to releases
+copyDir(buildDir, path.join(releaseDir, 'dist'));
 
 // Replace environment variables in the release directory
 function processDirectory(dir) {
