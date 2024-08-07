@@ -28,7 +28,7 @@
         "ts-runtime-checks": "^0.6.1"
     },
     "devDependencies": {
-        "@types/node": "^20.14.10",
+        "@types/node": "^20.14.14",
         "rimraf": "^6.0.1",
         "ts-patch": "^3.2.1",
         "tsc-alias": "^1.8.10",

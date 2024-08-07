@@ -5,7 +5,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export async function writeToOutput(str: string) {
-    const filepath = path.join(__dirname, '../../output', 'googlemaps_places_running_shoe_stores.json')
+    const filepath = path.join(process.env.EXTRACT__OUTPUT_DIR!, 'googlemaps_places_running_shoe_stores.json')
     await fs.writeFile(filepath, str);
-    console.log('written to.. vscode://file' + filepath);
+    console.log('written to.. file://' + filepath);
 }
