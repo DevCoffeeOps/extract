@@ -37,7 +37,7 @@ function checkoutBranch(branch) {
 
 function buildAndSave(commitHash) {
     const buildPrefix = getBuildPrefix(buildType);
-    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix === 'current' ? 'current-' : ''}${timestamp}${commitHash ? '-' + commitHash : ''}`);
+    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix === 'current-' ? 'current-' : ''}${timestamp}${commitHash ? '-' + commitHash : ''}`);
     const distDir = join(__dirname, '..', 'dist');
 
     if (fs.existsSync(buildDir)) {
