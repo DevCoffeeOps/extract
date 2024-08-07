@@ -10,12 +10,16 @@ const __dirname = dirname(__filename);
 const buildType = process.argv[2];
 const timestamp = new Date().toISOString().replace(/[-T:.Z]/g, '').substring(0, 8);
 
+function runCommand(command) {
+    execSync(command, { stdio: 'inherit' });
+}
+
 function getCommitHash(commitSpec) {
     return execSync(`git rev-parse ${commitSpec}`).toString().trim();
 }
 
 function checkoutCommit(commitHash) {
-    execSync(`git checkout ${commitHash}`, { stdio: 'inherit' });
+    runCommand(`git checkout ${commitHash}`);
 }
 
 function buildAndSave(commitHash) {
@@ -26,7 +30,7 @@ function buildAndSave(commitHash) {
         rimraf.sync(buildDir);
     }
 
-    execSync('npm run build', { stdio: 'inherit' });
+    runCommand('npm run build');
 
     fs.mkdirSync(buildDir, { recursive: true });
     fs.renameSync(distDir, join(buildDir, 'dist'));
@@ -62,7 +66,7 @@ function isDetached() {
             originalBranch = null;
             uncommittedChanges = getUncommittedChanges();
             if (uncommittedChanges) {
-                execSync('git stash', { stdio: 'inherit' });
+                runCommand('git stash');
                 hasStash = true;
             }
             // Switch to main branch
@@ -91,16 +95,16 @@ function isDetached() {
         console.error('An error occurred:', error.message);
     } finally {
         try {
-            if (isDetached()) {
-                if (originalBranch) {
-                    checkoutCommit(originalBranch);
-                }
+            // Restore the original branch or main
+            if (isDetached() || originalBranch) {
+                checkoutCommit('main');
             } else if (originalBranch) {
                 checkoutCommit(originalBranch);
             }
 
+            // Restore stashed changes if any
             if (hasStash) {
-                execSync('git stash pop', { stdio: 'inherit' });
+                runCommand('git stash pop');
             }
         } catch (error) {
             console.error('Failed to restore original state:', error.message);
