@@ -13,11 +13,11 @@ const timestamp = new Date().toISOString().replace(/[-T:.Z]/g, '').substring(0, 
 function getBuildPrefix(type) {
     switch (type) {
         case 'current':
-            return '01-current';
+            return '01-';
         case 'last':
-            return '02-last';
+            return '02-';
         case 'two-commits-ago':
-            return '03-two-commits-ago';
+            return '03-';
         default:
             throw new Error('Invalid build type');
     }
@@ -37,7 +37,7 @@ function checkoutBranch(branch) {
 
 function buildAndSave(commitHash) {
     const buildPrefix = getBuildPrefix(buildType);
-    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix === 'current-' ? 'current-' : ''}${timestamp}${commitHash ? '-' + commitHash : ''}`);
+    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix}${timestamp}${commitHash ? '-' + commitHash : ''}`);
     const distDir = join(__dirname, '..', 'dist');
 
     if (fs.existsSync(buildDir)) {
