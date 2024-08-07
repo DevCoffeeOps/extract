@@ -18,8 +18,8 @@ function getCommitHash(commitSpec) {
     return execSync(`git rev-parse ${commitSpec}`).toString().trim();
 }
 
-function checkoutCommit(commitHash) {
-    runCommand(`git checkout ${commitHash}`);
+function checkoutBranch(branch) {
+    runCommand(`git checkout ${branch}`);
 }
 
 function buildAndSave(commitHash) {
@@ -46,10 +46,6 @@ function getUncommittedChanges() {
     return execSync('git diff --name-only').toString().trim();
 }
 
-function getCurrentCommit() {
-    return execSync('git rev-parse HEAD').toString().trim();
-}
-
 function isDetached() {
     return execSync('git symbolic-ref --short HEAD 2>/dev/null || echo "detached"').toString().trim() === 'detached';
 }
@@ -58,24 +54,22 @@ function isDetached() {
     let originalBranch = null;
     let hasStash = false;
     let uncommittedChanges = '';
-    let currentCommit = '';
 
     try {
-        // Record the current state
+        // Save the current state
         if (isDetached()) {
-            originalBranch = null;
+            originalBranch = 'main';
             uncommittedChanges = getUncommittedChanges();
             if (uncommittedChanges) {
                 runCommand('git stash');
                 hasStash = true;
             }
-            // Switch to main branch
-            checkoutCommit('main');
+            // Check out the main branch
+            checkoutBranch('main');
         } else {
             originalBranch = getCurrentBranch();
-            currentCommit = getCurrentCommit();
-            if (currentCommit !== getCurrentCommit()) {
-                checkoutCommit('main');
+            if (originalBranch !== 'main') {
+                checkoutBranch('main');
             }
         }
 
@@ -95,14 +89,12 @@ function isDetached() {
         console.error('An error occurred:', error.message);
     } finally {
         try {
-            // Restore the original branch or main
-            if (isDetached() || originalBranch) {
-                checkoutCommit('main');
-            } else if (originalBranch) {
-                checkoutCommit(originalBranch);
+            // Restore the original branch
+            if (originalBranch) {
+                checkoutBranch(originalBranch);
             }
 
-            // Restore stashed changes if any
+            // Apply stashed changes if any
             if (hasStash) {
                 runCommand('git stash pop');
             }
