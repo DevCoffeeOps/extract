@@ -10,6 +10,19 @@ const __dirname = dirname(__filename);
 const buildType = process.argv[2];
 const timestamp = new Date().toISOString().replace(/[-T:.Z]/g, '').substring(0, 8);
 
+function getBuildPrefix(type) {
+    switch (type) {
+        case 'current':
+            return '01-current';
+        case 'last':
+            return '02-last';
+        case 'two-commits-ago':
+            return '03-two-commits-ago';
+        default:
+            throw new Error('Invalid build type');
+    }
+}
+
 function runCommand(command) {
     execSync(command, { stdio: 'inherit' });
 }
@@ -23,13 +36,14 @@ function checkoutBranch(branch) {
 }
 
 function buildAndSave(commitHash) {
-    const buildDir = join(__dirname, '..', 'builds', `${timestamp}-${commitHash}`);
+    const buildPrefix = getBuildPrefix(buildType);
+    const buildDir = join(__dirname, '..', 'builds', `${buildPrefix}-${timestamp}-${commitHash}`);
     const distDir = join(__dirname, '..', 'dist');
 
     if (fs.existsSync(buildDir)) {
         rimraf.sync(buildDir);
     }
-
+    
     runCommand('npm run build');
 
     fs.mkdirSync(buildDir, { recursive: true });
