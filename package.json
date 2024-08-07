@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "postinstall": "npx ts-patch install",
-        "build": "tsc",
+        "build": "tsc && tsc-alias",
         "clean": "rimraf dist",
         "prepare-build-dir": "rimraf builds && mkdir -p builds",
         "build-current": "npm run clean && npm run build && npm run save-current",
