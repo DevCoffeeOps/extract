@@ -1,5 +1,3 @@
-import '../set_env.js';
-
 import axios from "axios";
 
 export async function googleMapsSearchText(keyword: string, lat: number, lng: number, radius: number) {
@@ -21,7 +19,7 @@ export async function googleMapsSearchText(keyword: string, lat: number, lng: nu
 
     const headers = {
         'Content-Type': 'application/json',
-        'X-Goog-Api-Key': process.env.GOOGLE_MAPS_API_KEY,
+        'X-Goog-Api-Key': process.env.EXTRACT__GOOGLE_MAPS_API_KEY,
         'X-Goog-FieldMask': '*'
     };
 

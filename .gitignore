@@ -2,7 +2,7 @@
 *.db-journal
 *.sif
 data/
-set_env.js
+set_config.js
 prisma/backup.sql
 output
 

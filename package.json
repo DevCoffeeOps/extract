@@ -21,6 +21,8 @@
     "dependencies": {
         "@prisma/client": "^5.17.0",
         "axios": "^1.7.3",
+        "dotenv": "^16.4.5",
+        "envalid": "^8.0.0",
         "prisma": "^5.16.1",
         "ts-runtime-checks": "^0.6.1"
     },

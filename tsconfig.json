@@ -27,12 +27,18 @@
             }
         ]
     },
-    "include": ["src/**/*"],
+    "include": [
+        "src/**/*",
+        "setConfig.d.ts"
+    ],
     "paths": {
-        "*": ["src/*"]
+        "*": [
+            "src/*"
+        ]
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "setConfig.js"
     ],
     "tsc-alias": {
         "resolveFullPaths": true,
