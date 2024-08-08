@@ -6,6 +6,7 @@
     "scripts": {
         "postinstall": "npx ts-patch install",
         "build": "tsc && tsc-alias",
+        "postbuild": "copyfiles -u 1 'node_modules/**/*' 'dist/node_modules'",
         "clean": "rimraf dist",
         "prepare-build-dir": "rimraf builds && mkdir -p builds",
         "build-current": "npm run clean && npm run build && npm run save-current",
@@ -17,7 +18,7 @@
         "build-all": "npm run prepare-build-dir && npm run build-current && npm run build-last && npm run build-two-commits-ago",
         "release": "node admin/release.js",
         "start": "npm run build && node dist/index.js",
-        "go": "node releases/dist/index.js"
+        "go": "releases/dist/run.sh"
     },
     "dependencies": {
         "@prisma/client": "^5.17.0",
@@ -29,6 +30,7 @@
     },
     "devDependencies": {
         "@types/node": "^20.14.14",
+        "copyfiles": "^2.4.1",
         "rimraf": "^6.0.1",
         "ts-patch": "^3.2.1",
         "tsc-alias": "^1.8.10",
