@@ -3,9 +3,15 @@
 ```sh
 npm run build-all # build current src and previous 2 commits, save to builds/
 
-npm run release   # create a release that combines the current build with all process.env.VARS used (warning: releases/dist/* files will contain all process.env variable values used, including sensitive keys)
+npm run release   # create a release that combines the current build with all process.env.VARS used
 
-npm run go        # run the release in releases/dist
+# WARNING: releases/dist/* files will contain all process.env variable values used, including sensitive keys.
+
+npm run go        # run the local release in releases/dist
+
+# You can copy releases/dist to any system that has Node.js installed and run it with:
+
+`node releases/dist/index.js`
 ```
 
 Notes:
