@@ -18,7 +18,7 @@
         "build-all": "npm run prepare-build-dir && npm run build-current && npm run build-last && npm run build-two-commits-ago",
         "release": "node admin/release.js",
         "start": "npm run build && node dist/index.js",
-        "go": "releases/dist/run.sh"
+        "go": "node releases/dist/index.js"
     },
     "dependencies": {
         "@prisma/client": "^5.17.0",
