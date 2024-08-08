@@ -17,8 +17,8 @@ npm run release   # create a release that combines the current build with all pr
 # WARNING: releases/dist/* files will contain all process.env variable values used, including sensitive keys.
 
 npm run go        # run the local release in releases/dist
-# You can copy releases/dist to any system that has Node.js installed and run it with:
 
+# You can copy releases/dist to any system that has Node.js installed and run it with:
 `node releases/dist/index.js`
 ```
 
