@@ -9,6 +9,9 @@ process.env.EXTRACT__KEYWORD = "Your search keyword";
 process.env.EXTRACT__CITY_STATE = "City, State";
 process.env.EXTRACT__OUTPUT_DIR = "path-to-output-dir";
 ```
+
+### Build, Release, Run commands
+
 ```sh
 npm run build-all # build current src and previous 2 commits, save to builds/
 
