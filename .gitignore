@@ -7,8 +7,8 @@ prisma/backup.sql
 output
 releases
 
-!builds/
-builds/**/node_modules
+!last-three-builds/
+last-three-builds/**/node_modules
 
 # Logs
 logs

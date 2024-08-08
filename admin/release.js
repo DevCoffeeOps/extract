@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Paths
-const buildsDir = path.join(__dirname, '..', 'builds');
+const buildsDir = path.join(__dirname, '..', 'last-three-builds');
 const releaseDir = path.join(__dirname, '..', 'releases');
 
 // Helper function to replace environment variable references
