@@ -19,17 +19,19 @@
         "release": "node admin/release.js",
         "start": "npm run build && node dist/index.js",
         "go": "node releases/dist/index.js",
-        "g": "npm run build-all && npm run release && npm run go"
+        "g": "npm run build-current && npm run release && npm run go"
     },
     "dependencies": {
         "@prisma/client": "^5.17.0",
         "axios": "^1.7.3",
         "dotenv": "^16.4.5",
         "envalid": "^8.0.0",
+        "mongodb": "^6.8.0",
         "prisma": "^5.16.1",
         "ts-runtime-checks": "^0.6.1"
     },
     "devDependencies": {
+        "@types/mongodb": "^4.0.6",
         "@types/node": "^20.14.14",
         "copyfiles": "^2.4.1",
         "rimraf": "^6.0.1",
