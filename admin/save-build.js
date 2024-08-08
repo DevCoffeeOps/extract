@@ -70,7 +70,6 @@ function isDetached() {
     let uncommittedChanges = '';
 
     try {
-        // Save the current state
         if (isDetached()) {
             originalBranch = 'main';
             uncommittedChanges = getUncommittedChanges();
@@ -78,7 +77,6 @@ function isDetached() {
                 runCommand('git stash');
                 hasStash = true;
             }
-            // Check out the main branch
             checkoutBranch('main');
         } else {
             originalBranch = getCurrentBranch();
@@ -103,12 +101,9 @@ function isDetached() {
         console.error('An error occurred:', error.message);
     } finally {
         try {
-            // Restore the original branch
             if (originalBranch) {
                 checkoutBranch(originalBranch);
             }
-
-            // Apply stashed changes if any
             if (hasStash) {
                 runCommand('git stash pop');
             }

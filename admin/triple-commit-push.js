@@ -13,16 +13,13 @@ function runCommand(command) {
 }
 
 function commitAndPush() {
-    // Add all changes (this will be empty since we are not making any actual changes)
     runCommand('git add --all');
 
-    // Create three empty commits
     for (let i = 1; i <= 3; i++) {
         const commitMessage = `Empty commit ${i}`;
         runCommand(`git commit --allow-empty -m '${commitMessage}'`);
     }
 
-    // Push the commits
     runCommand('git push');
 }
 
