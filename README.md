@@ -14,7 +14,6 @@ process.env.EXTRACT__OUTPUT_DIR = "path-to-output-dir";
 npm run build-all # build current src and previous 2 commits, save to builds/
 
 npm run release   # create a release that combines the current build with all process.env.VARS used
-
 # WARNING: releases/dist/* files will contain all process.env variable values used, including sensitive keys.
 
 npm run go        # run the local release in releases/dist
